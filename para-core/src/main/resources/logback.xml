@@ -3,7 +3,7 @@
 
 	<appender name="STDOUT" class="ch.qos.logback.core.ConsoleAppender">
 		<encoder class="ch.qos.logback.classic.encoder.PatternLayoutEncoder">
-			<pattern>%-20(%d{yyyy-MM-dd HH:mm:ss} %highlight([%-5level])) %msg%n</pattern>
+			<pattern>%d{HH:mm:ss.SSS} %highlight(%-5level) %cyan(%logger{35}){}\(%line\) -- %msg%n</pattern>
 		</encoder>
 	</appender>
 
@@ -43,4 +43,10 @@
 		<appender-ref ref="SYSLOG" />
 		<appender-ref ref="ROLLING" />
 	</root>
+
+
+	<root level="DEBUG">
+		<appender-ref ref="STDOUT" />
+	</root>
+
 </configuration>

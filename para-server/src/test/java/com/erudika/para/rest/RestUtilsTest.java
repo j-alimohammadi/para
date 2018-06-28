@@ -72,6 +72,7 @@ public class RestUtilsTest {
 		CoreUtils.getInstance().setSearch(Para.getSearch());
 	}
 
+
 	@AfterClass
 	public static void tearDownClass() {
 		Para.destroy();
