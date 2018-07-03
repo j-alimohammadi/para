@@ -12,22 +12,22 @@
 		<suffixPattern>[%-5level] %msg%n</suffixPattern>
 	</appender>
 
-	<appender name="ROLLING" class="ch.qos.logback.core.rolling.RollingFileAppender">
-		<file>para.log</file>
-		<rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
-			<!-- rollover monthly -->
-			<fileNamePattern>para-%d{yyyy-MM}.log.zip</fileNamePattern>
-			<maxHistory>12</maxHistory>
-			<totalSizeCap>3GB</totalSizeCap>
-		</rollingPolicy>
-		<encoder>
-			<pattern>%-26(%d [%-5level]) %logger{35} - %msg%n</pattern>
-		</encoder>
-	</appender>
+	<!--<appender name="ROLLING" class="ch.qos.logback.core.rolling.RollingFileAppender">-->
+		<!--<file>para.log</file>-->
+		<!--<rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">-->
+			<!--&lt;!&ndash; rollover monthly &ndash;&gt;-->
+			<!--<fileNamePattern>para-%d{yyyy-MM}.log.zip</fileNamePattern>-->
+			<!--<maxHistory>12</maxHistory>-->
+			<!--<totalSizeCap>3GB</totalSizeCap>-->
+		<!--</rollingPolicy>-->
+		<!--<encoder>-->
+			<!--<pattern>%-26(%d [%-5level]) %logger{35} - %msg%n</pattern>-->
+		<!--</encoder>-->
+	<!--</appender>-->
 
 	<logger name="ch.qos.logback" level="WARN"/>
 	<logger name="org.apache" level="WARN"/>
-	<logger name="org.elasticsearch" level="INFO"/>
+	<logger name="org.elasticsearch" level="WARN"/>
 	<logger name="org.springframework" level="WARN"/>
 	<logger name="org.eclipse.jetty" level="WARN"/>
 	<logger name="com.erudika" level="DEBUG"/>
@@ -37,11 +37,12 @@
 	<logger name="org.glassfish" level="WARN"/>
 	<logger name="org.hibernate" level="WARN"/>
 	<logger name="com.hazelcast" level="INFO"/>
+	<logger name="org.mongodb" level="WARN"/>
 
 	<root level="INFO">
 		<appender-ref ref="STDOUT" />
 		<appender-ref ref="SYSLOG" />
-		<appender-ref ref="ROLLING" />
+		<!--<appender-ref ref="ROLLING" />-->
 	</root>
 
 
