@@ -31,6 +31,7 @@ import com.erudika.para.validation.Constraint;
 import com.fasterxml.jackson.jaxrs.json.JacksonJsonProvider;
 import org.apache.commons.lang3.StringUtils;
 import org.glassfish.jersey.SslConfigurator;
+import org.glassfish.jersey.apache.connector.ApacheConnectorProvider;
 import org.glassfish.jersey.client.ClientConfig;
 import org.glassfish.jersey.client.ClientProperties;
 import org.glassfish.jersey.client.HttpUrlConnectorProvider;
@@ -86,14 +87,15 @@ public final class ParaClient {
 
         clientConfig.register(GenericExceptionMapper.class);
         clientConfig.register(new JacksonJsonProvider(ParaObjectUtils.getJsonMapper()));
+        clientConfig.property(ClientProperties.PROXY_URI, "http://127.0.0.1:8888");
         clientConfig.connectorProvider(new HttpUrlConnectorProvider().useSetMethodWorkaround());
-//        SSLContext sslContext = SslConfigurator.newInstance().securityProtocol("TLSv1").createSSLContext();
-//        System.setProperty("https.protocols", "TLSv1");
+        clientConfig.connectorProvider( new ApacheConnectorProvider() );
+        SSLContext sslContext = SslConfigurator.newInstance().securityProtocol("TLSv1").createSSLContext();
+        System.setProperty("https.protocols", "TLSv1");
         // add some text
         apiClient = ClientBuilder.newBuilder().
                 withConfig(clientConfig).build();
 
-        apiClient.property(ClientProperties.PROXY_URI, "127.0.0.1:8888");
     }
 
     protected Client getApiClient() {
