@@ -94,6 +94,7 @@ public final class ParaClient {
         System.setProperty("https.protocols", "TLSv1");
         // add some text
         apiClient = ClientBuilder.newBuilder().
+                sslContext(sslContext).
                 withConfig(clientConfig).build();
 
     }
